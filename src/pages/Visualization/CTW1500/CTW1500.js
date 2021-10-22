@@ -13,7 +13,13 @@ import {
     Grid,
     Col,
     Row,
+    Tag,
+    Tooltip
 } from 'antd';
+
+import {
+    QuestionCircleTwoTone,
+} from '@ant-design/icons';
 
 message.config({
     top: 150
@@ -106,7 +112,7 @@ const CTW1500 = () => {
 
     return (
         <>
-            <Card title="训练集">
+            <Card title={<>训练集<Tooltip title="先选择图片再选择label"><QuestionCircleTwoTone /></Tooltip></>}>
                 <Row gutter={16} align={"middle"}>
                     <Col>
                         <Upload
@@ -227,7 +233,7 @@ const CTW1500 = () => {
                     </Image>
                 </Card>
             </Card>
-            <Card title="测试集">
+            <Card title={<>训练集<Tooltip title="先选择图片再选择label"><QuestionCircleTwoTone /></Tooltip></>}>
                 <Row gutter={16} align={"middle"}>
                     <Col>
                         <Upload

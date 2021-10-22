@@ -11,7 +11,7 @@ const _nav = [
     },
     {
         _tag: 'CSidebarNavItem',
-        name: 'CTW1500',w
+        name: 'CTW1500',
         to: '/Visualization/CTW1500',
         icon: 'cil-barcode',
     },
