@@ -1,0 +1,7 @@
+/*设置不可选中*/
+.can-not-select {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -o-user-select: none;
+    -ms-user-select: none;
+}
