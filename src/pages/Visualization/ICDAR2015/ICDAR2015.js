@@ -1,19 +1,8 @@
-import React, {useState, useRef} from "react"
+import React, {useRef, useState} from "react"
 import 'antd/dist/antd.css'
 import '../style.css'
-import rough from 'roughjs/bundled/rough.esm.js';//https://roughjs.com/
-import {
-    Button,
-    message,
-    Card,
-    Image,
-    Upload,
-    Switch,
-    Grid,
-    Col,
-    Row,
-    Tooltip,
-} from 'antd';
+import rough from 'roughjs/bundled/rough.esm.js'; //https://roughjs.com/
+import {Card, Col, Image, message, Row, Tooltip, Upload,} from 'antd';
 import {QuestionCircleTwoTone} from "@ant-design/icons";
 
 message.config({
@@ -21,7 +10,7 @@ message.config({
 });
 
 
-const ICDAR2019 = () => {
+const ICDAR2015 = () => {
 
     const [trainImageSrc, setTrainImageSrc] = useState('');
     const [trainLabelSrc, setTrainLabelSrc] = useState('');
@@ -85,7 +74,7 @@ const ICDAR2019 = () => {
 
     return (
         <>
-            <Card title={<>训练集<Tooltip title="先选择label再选择图片"><QuestionCircleTwoTone/></Tooltip></>}>
+            <Card title={<>训练/测试集<Tooltip title="先选择label再选择图片"><QuestionCircleTwoTone/></Tooltip></>}>
                 <Row gutter={16} align={"middle"}>
                     <Col>
                         <Upload
@@ -93,16 +82,23 @@ const ICDAR2019 = () => {
                                 const reader = new FileReader();
                                 reader.readAsText(file);
                                 reader.addEventListener('load', event => {
-                                    const json = JSON.parse(event.target.result);
+                                    const txt = event.target.result.split('\n');
+                                    const json = {};
+                                    for (let i = 0; i < txt.length; i++) {
+                                        if (txt[i].length === 0) continue;
+                                        const s = txt[i].split('.jpg');
+                                        const img_name = s[0].split('/')[1];
+                                        json[img_name] = JSON.parse(s[1]);
+                                    }
                                     setTrainLabelSrc(json);
                                 });
                                 return false;
                             }}
                             onChange={choseTrainLabel}
                             listType="picture-card"
-                            accept="application/json"
+                            accept="text/plain"
                         >
-                            {trainLabelSrc === '' && '选择label(json)'}
+                            {trainLabelSrc === '' && '选择label(txt)'}
                         </Upload>
                     </Col>
                     <Col>
@@ -128,7 +124,7 @@ const ICDAR2019 = () => {
                                             let color = colors[Math.floor(Math.random() * colors.length)];
                                             color = color.replace('0.5', '0.8');//透明度调低一点
                                             const polygon = [];
-                                            for(let j = 0; j < segs[i].points.length; j++) {
+                                            for (let j = 0; j < segs[i].points.length; j++) {
                                                 polygon.push([segs[i].points[j][0] * ratio, segs[i].points[j][1] * ratio]);
                                             }
                                             svg.appendChild(roughSvg.polygon(polygon, {
@@ -170,4 +166,4 @@ const ICDAR2019 = () => {
     );
 };
 
-export default ICDAR2019
+export default ICDAR2015

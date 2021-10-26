@@ -21,6 +21,12 @@ const _nav = [
         to: '/Visualization/ICDAR2019',
         icon: 'cil-barcode',
     },
+    {
+        _tag: 'CSidebarNavItem',
+        name: 'ICDAR2015',
+        to: '/Visualization/ICDAR2015',
+        icon: 'cil-barcode',
+    },
 ];
 
 export default _nav
