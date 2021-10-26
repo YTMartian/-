@@ -12,3 +12,5 @@
 * [x] CTW 1500
 
 * [x] ICDAR2019 LSVT
+
+* [x] ICDAR2015
