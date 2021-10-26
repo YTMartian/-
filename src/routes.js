@@ -9,6 +9,7 @@ const routes = [
     {path: '/', exact: true, name: '主页', component: Home},
     // { path: '/ProjectManage', name: '工程管理', component: ProjectList, exact: true },
     {path: '/Visualization/CTW1500', exact: true, name: 'CTW1500', component: CTW1500},
+    {path: '/Visualization/ICDAR2019', exact: true, name: 'ICDAR2019', component: ICDAR2019},
     {path: '/Visualization/ICDAR2015', exact: true, name: 'ICDAR2015', component: ICDAR2015},
 ];
 
